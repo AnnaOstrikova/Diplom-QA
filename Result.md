@@ -55,10 +55,15 @@
 
 По результатам автоматизированного тестирования был найден 1 баг:
 
-![Отчет Allure](https://drive.google.com/file/d/1B8fqwA3AvmMZ6hb8hGejL1Om_deGqHSz/view?usp=sharing)
+[issues #1](https://github.com/AnnaOstrikova/Diplom-QA/issues/1)
 
-По результатам ручного тестирования было найдено 5 багов:
+По результатам ручного тестирования было найдено еще 5 багов:
 
+[issues #2](https://github.com/AnnaOstrikova/Diplom-QA/issues/2)
+[issues #3](https://github.com/AnnaOstrikova/Diplom-QA/issues/3)
+[issues #4](https://github.com/AnnaOstrikova/Diplom-QA/issues/4)
+[issues #5](https://github.com/AnnaOstrikova/Diplom-QA/issues/5)
+[issues #6](https://github.com/AnnaOstrikova/Diplom-QA/issues/6)
 
 ### 4. Временные затраты
 
