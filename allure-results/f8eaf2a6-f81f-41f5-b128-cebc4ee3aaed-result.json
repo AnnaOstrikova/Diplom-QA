@@ -1,0 +1,141 @@
+{
+    "name": "addingNewsWithoutFillingInFields",
+    "start": 1746799551428,
+    "stop": 1746799557946,
+    "stage": "finished",
+    "description": "Добавление новости в режиме редактирования без заполения полей",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Нажать на кнопку Главное меню",
+            "start": 1746799555154,
+            "stop": 1746799555155,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Новости",
+            "start": 1746799555581,
+            "stop": 1746799555581,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Редактирование",
+            "start": 1746799555865,
+            "stop": 1746799555865,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Добавление новости",
+            "start": 1746799556310,
+            "stop": 1746799556310,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать кнопку Сохранить",
+            "start": 1746799556698,
+            "stop": 1746799556698,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "f8eaf2a6-f81f-41f5-b128-cebc4ee3aaed",
+    "historyId": "2c0a2933b7b89af71db618e946ff0508",
+    "fullName": "ru.netology.test.NewsTest.addingNewsWithoutFillingInFields",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.test"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.test.NewsTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "addingNewsWithoutFillingInFields"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.test.NewsTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1839)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "Тест-кейс №53"
+        },
+        {
+            "name": "epic",
+            "value": "Добавления новости в режиме редактирования"
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "name": "loginAndPasswordEmpty",
+    "start": 1746799476549,
+    "stop": 1746799481348,
+    "stage": "finished",
+    "description": "Авторизация пользователя без ввода логина и пароля",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Нажать на кнопку Войти",
+            "start": 1746799480300,
+            "stop": 1746799480300,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "9a0bdaf0-20c2-47d4-8890-f548fcfdf087",
+    "historyId": "9158b36754ad72b2df148bc13bfd6488",
+    "fullName": "ru.netology.test.AuthTest.loginAndPasswordEmpty",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.test"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.test.AuthTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "loginAndPasswordEmpty"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.test.AuthTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1839)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "Тест-кейс №5"
+        },
+        {
+            "name": "epic",
+            "value": "Авторизация пользователя"
+        }
+    ]
+}

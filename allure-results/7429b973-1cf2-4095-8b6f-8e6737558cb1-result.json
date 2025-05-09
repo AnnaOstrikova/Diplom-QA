@@ -1,0 +1,93 @@
+{
+    "name": "passwordFieldIsEmpty",
+    "start": 1746800952748,
+    "stop": 1746800958404,
+    "stage": "finished",
+    "description": "Авторизация незарегистрированного пользователя (с пустым паролем)",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "В поле Логин ввести логин зарегистрированного пользователя",
+            "start": 1746800957026,
+            "stop": 1746800957026,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Войти",
+            "start": 1746800957060,
+            "stop": 1746800957061,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "7429b973-1cf2-4095-8b6f-8e6737558cb1",
+    "historyId": "8d500378b2ccc03d5a39f0365cd711c8",
+    "fullName": "ru.netology.test.AuthTest.passwordFieldIsEmpty",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.test"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.test.AuthTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "passwordFieldIsEmpty"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.test.AuthTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1849)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "Тест-кейс №4"
+        },
+        {
+            "name": "epic",
+            "value": "Авторизация пользователя"
+        }
+    ]
+}

@@ -1,0 +1,141 @@
+{
+    "name": "cancelNewsCreation",
+    "start": 1746799256900,
+    "stop": 1746799265488,
+    "stage": "finished",
+    "description": "Отмена создания новости",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Нажать на кнопку Главное меню",
+            "start": 1746799261718,
+            "stop": 1746799261718,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Новости",
+            "start": 1746799262132,
+            "stop": 1746799262132,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Редактирование",
+            "start": 1746799262471,
+            "stop": 1746799262472,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Добавление новости",
+            "start": 1746799263068,
+            "stop": 1746799263068,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать кнопку Отменить",
+            "start": 1746799263545,
+            "stop": 1746799263545,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "2f39ade6-2160-4587-9673-4d54d4b8d775",
+    "historyId": "3be5d84b3aa25785e74f0f72e4bacdb5",
+    "fullName": "ru.netology.test.NewsTest.cancelNewsCreation",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.test"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.test.NewsTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "cancelNewsCreation"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.test.NewsTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1829)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "Тест-кейс №46"
+        },
+        {
+            "name": "epic",
+            "value": "Добавления новости в режиме редактирования"
+        }
+    ]
+}

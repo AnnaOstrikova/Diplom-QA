@@ -1,25 +1,19 @@
 package ru.netology.element;
 
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
 import android.view.View;
-
 import androidx.test.espresso.PerformException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.util.HumanReadables;
 import androidx.test.espresso.util.TreeIterables;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-
 import org.hamcrest.Matcher;
 import org.junit.Rule;
-
 import java.util.concurrent.TimeoutException;
-
 import io.qameta.allure.android.rules.ScreenshotRule;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
@@ -30,13 +24,13 @@ public class WaitElement {
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
-    private static long waitTimeout = 5000;
+    private long waitTimeout = 10000;
 
-    public static void waitUntilElement(final int viewId) {
+    public void waitUntilElement(final int viewId) {
         onView(isRoot()).perform(waitId(viewId, waitTimeout));
     }
 
-    public static ViewAction waitId(final int viewId, final long millis) {
+    public ViewAction waitId(final int viewId, final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
@@ -59,7 +53,10 @@ public class WaitElement {
                     for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
                         // found view with required ID
                         if (viewMatcher.matches(child)) {
-                            return;
+                            // Дополнительная проверка на видимость элемента
+                            if (child.isShown()) {
+                                return;
+                            }
                         }
                     }
                     uiController.loopMainThreadForAtLeast(50);
@@ -75,7 +72,7 @@ public class WaitElement {
         };
     }
 
-    public static ViewAction waitId(final String viewText, final long millis) {
+    public ViewAction waitId(final String viewText, final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
@@ -113,16 +110,5 @@ public class WaitElement {
                         .build();
             }
         };
-    }
-
-    public static void waitFor(int seconds) {
-        seconds = seconds < 0 ? 0 : seconds;
-        while (--seconds >= 0) {
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

@@ -1,0 +1,109 @@
+{
+    "name": "loginFieldIsEmpty",
+    "start": 1746781749728,
+    "stop": 1746781756833,
+    "stage": "finished",
+    "description": "Авторизация незарегистрированного пользователя (с пустым логином)",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Отобразилаcь страница Авторизации",
+            "start": 1746781752009,
+            "stop": 1746781752009,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "В поле Пароль ввести пароль зарегистрированного пользователя",
+            "start": 1746781755467,
+            "stop": 1746781755468,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку Войти",
+            "start": 1746781755517,
+            "stop": 1746781755517,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "d2e50bcc-630f-4506-9d78-c12c49e2d2fd",
+    "historyId": "987e4e7f23d794f9d82fa786120f160",
+    "fullName": "ru.netology.test.AuthTest.loginFieldIsEmpty",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.test"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.test.AuthTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "loginFieldIsEmpty"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.test.AuthTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1324)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "Тест-кейс №3"
+        },
+        {
+            "name": "epic",
+            "value": "Авторизация пользователя"
+        }
+    ]
+}

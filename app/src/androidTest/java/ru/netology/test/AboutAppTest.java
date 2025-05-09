@@ -30,15 +30,17 @@ public class AboutAppTest {
     public ActivityTestRule<AppActivity> activityTestRule =
             new ActivityTestRule<>(AppActivity.class);
 
-    @Before
-    public void authorizationCheck() {
-        AuthSteps.autorization();
-    }
+    private final AuthSteps authSteps = new AuthSteps();
+    private final AuthElement authElement = new AuthElement();
+    private final AboutAppSteps aboutAppSteps = new AboutAppSteps();
 
-    @AfterClass
-    public static void exit() {
-        AuthElement.clickButtonExit(AuthElement.getAuthorizationElementsButtonExit());
-        AuthSteps.clickButtonLogOut();
+    @Before
+    public void setUp() {
+        if (authElement.waitForSplashScreen(3000).checkAuthorizationIsDisplayed()) {
+            authSteps.clickLoginField();
+            authSteps.clickPasswordField();
+            authSteps.clickButton(authElement.getAutorizationElementsButton());
+        }
     }
 
     //  Тест-кейс №68 - Открытие ссылки Политика конфиденциальности.
@@ -46,9 +48,9 @@ public class AboutAppTest {
     @Story("Тест-кейс №68")
     @Description("Открытие ссылки Политика конфиденциальности")
     public void openingLinkPrivacyPolicy() {
-        AboutAppSteps.clickButtonMainMenu();
-        AboutAppSteps.clickButtonAbout();
-        AboutAppSteps.clickPrivacyPolicy();
+        aboutAppSteps.clickButtonMainMenu();
+        aboutAppSteps.clickButtonAbout();
+        aboutAppSteps.clickPrivacyPolicy();
     }
 
     //  Тест-кейс №69 - Открытие ссылки Пользовательское соглашение.
@@ -56,9 +58,9 @@ public class AboutAppTest {
     @Story("Тест-кейс №69")
     @Description("Открытие ссылки Пользовательское соглашение")
     public void openingLinkTermsOfUse() {
-        AboutAppSteps.clickButtonMainMenu();
-        AboutAppSteps.clickButtonAbout();
-        AboutAppSteps.clickTermsOfUse();
+        aboutAppSteps.clickButtonMainMenu();
+        aboutAppSteps.clickButtonAbout();
+        aboutAppSteps.clickTermsOfUse();
     }
 
     // Тест-кейс №70 - Выход со страницы через кнопку Назад
@@ -66,9 +68,9 @@ public class AboutAppTest {
     @Story("Тест-кейс №70")
     @Description("Выход со страницы через кнопку Назад")
     public void exitViaBackButton() {
-        AboutAppSteps.clickButtonMainMenu();
-        AboutAppSteps.clickButtonAbout();
-        AboutAppSteps.clickButtonBack();
-        AboutAppSteps.displayingNewsPage();
+        aboutAppSteps.clickButtonMainMenu();
+        aboutAppSteps.clickButtonAbout();
+        aboutAppSteps.clickButtonBack();
+        aboutAppSteps.displayingNewsPage();
     }
 }

@@ -11,7 +11,9 @@ import androidx.test.espresso.ViewInteraction;
 
 import org.hamcrest.Matcher;
 
-public class additionalActions {
+public class TestUtils {
+    // Приватный конструктор, чтобы предотвратить создание экземпляров
+    private TestUtils() {}
     // Метод для получения текста из TextView внутри RecyclerView
     public static ViewAction getChildTextViewWithId(final int id) {
         return new ViewAction() {

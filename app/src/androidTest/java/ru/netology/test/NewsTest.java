@@ -6,21 +6,14 @@ import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
-import static ru.netology.element.WaitElement.waitFor;
-
 import android.view.View;
-
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
@@ -28,16 +21,18 @@ import io.qameta.allure.kotlin.Story;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.netology.element.AuthElement;
+import ru.netology.element.WaitElement;
 import ru.netology.steps.AuthSteps;
 import ru.netology.steps.NewsSteps;
-
 
 @LargeTest
 //@RunWith(AndroidJUnit4.class)
 @RunWith(AllureAndroidJUnit4.class)
 
 @Epic("Добавления новости в режиме редактирования")
+
 public class NewsTest {
+
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
             new ActivityTestRule<>(AppActivity.class);
@@ -47,26 +42,18 @@ public class NewsTest {
             new ActivityScenarioRule<>(AppActivity.class);
     private View decorView;
 
+    private final AuthSteps authSteps = new AuthSteps();
+    private final AuthElement authElement = new AuthElement();
+    private final NewsSteps newsSteps= new NewsSteps();
+    private final WaitElement waitElement = new WaitElement();
+
     @Before
     public void setUp() {
-        mActivityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<AppActivity>() {
-            @Override
-            public void perform(AppActivity activity) {
-                decorView = activity.getWindow().getDecorView();
-            }
-        });
-    }
-
-
-    @Before
-    public void authorizationCheck() {
-        AuthSteps.autorization();
-    }
-
-    @AfterClass
-    public static void exit() {
-        AuthElement.clickButtonExit(AuthElement.getAuthorizationElementsButtonExit());
-        AuthSteps.clickButtonLogOut();
+        if (authElement.waitForSplashScreen(3000).checkAuthorizationIsDisplayed()) {
+            authSteps.clickLoginField();
+            authSteps.clickPasswordField();
+            authSteps.clickButton(authElement.getAutorizationElementsButton());
+        }
     }
 
     //  Тест-кейс №45 - Добавление новости в режиме редактирования.
@@ -74,22 +61,22 @@ public class NewsTest {
     @Story("Тест-кейс №45")
     @Description("Добавление новости в режиме редактирования")
     public void addingNews() {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonCategoryCreatingNews();
-        NewsSteps.clickButtonTitleCreatingNews();
-        NewsSteps.clickButtonDateCreatingNews();
-        NewsSteps.clickButtonTimeCreatingNews();
-        NewsSteps.clickDescriptionNews();
-        NewsSteps.clickButtonSaveNews();
-        NewsSteps.clickFilterNews();
-        NewsSteps.clickButtonCategoryFilterNews();
-        NewsSteps.clickButtonDateStartFilterNews();
-        NewsSteps.clickButtonDateEndFilterNews();
-        NewsSteps.clickButtonFilter();
-        NewsSteps.deleteNewsInFilter();
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonCategoryCreatingNews();
+        newsSteps.clickButtonTitleCreatingNews();
+        newsSteps.clickButtonDateCreatingNews();
+        newsSteps.clickButtonTimeCreatingNews();
+        newsSteps.clickDescriptionNews();
+        newsSteps.clickButtonSaveNews();
+        newsSteps.clickFilterNews();
+        newsSteps.clickButtonCategoryFilterNews();
+        newsSteps.clickButtonDateStartFilterNews();
+        newsSteps.clickButtonDateEndFilterNews();
+        newsSteps.clickButtonFilter();
+        newsSteps.deleteNewsInFilter();
     }
 
     //  Тест-кейс №46 - Отмена создания новости.
@@ -97,12 +84,12 @@ public class NewsTest {
     @Story("Тест-кейс №46")
     @Description("Отмена создания новости")
     public void cancelNewsCreation() {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonCancel();
-        NewsSteps.controlPanelIsDisplayed();
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonCancel();
+        newsSteps.controlPanelIsDisplayed();
     }
 
     //  Тест-кейс №47 - Отмена Отмены создания новости.
@@ -110,12 +97,12 @@ public class NewsTest {
     @Story("Тест-кейс №47")
     @Description("Отмена Отмены создания новости")
     public void removeCancellationOfNewsCreation() {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickCancelButtonCancel();
-        NewsSteps.creatingNewsIsDisplayed();
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickCancelButtonCancel();
+        newsSteps.creatingNewsIsDisplayed();
     }
 
     //  Тест-кейс №48 - Добавление новости в режиме редактирования без заполения категории.
@@ -123,16 +110,15 @@ public class NewsTest {
     @Story("Тест-кейс №48")
     @Description("Добавление новости в режиме редактирования без заполения категории")
     public void addingNewsWithoutACategory(){
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonTitleCreatingNews();
-        NewsSteps.clickButtonDateCreatingNews();
-        NewsSteps.clickButtonTimeCreatingNews();
-        NewsSteps.clickDescriptionNews();
-        NewsSteps.clickButtonSaveNews();
-        waitFor(1);
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonTitleCreatingNews();
+        newsSteps.clickButtonDateCreatingNews();
+        newsSteps.clickButtonTimeCreatingNews();
+        newsSteps.clickDescriptionNews();
+        newsSteps.clickButtonSaveNews();
         onView(withText(R.string.empty_fields)) //Заполните пустые поля
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -143,16 +129,15 @@ public class NewsTest {
     @Story("Тест-кейс №49")
     @Description("Добавление новости в режиме редактирования без заполения поля Заголовок")
     public void addingNewsWithoutATittle() {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonCategoryCreatingNews();
-        NewsSteps.clickButtonDateCreatingNews();
-        NewsSteps.clickButtonTimeCreatingNews();
-        NewsSteps.clickDescriptionNews();
-        NewsSteps.clickButtonSaveNews();
-        waitFor(1);
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonCategoryCreatingNews();
+        newsSteps.clickButtonDateCreatingNews();
+        newsSteps.clickButtonTimeCreatingNews();
+        newsSteps.clickDescriptionNews();
+        newsSteps.clickButtonSaveNews();
         onView(withText(R.string.empty_fields)) //Заполните пустые поля
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -162,17 +147,16 @@ public class NewsTest {
     @Test
     @Story("Тест-кейс №50")
     @Description("Добавление новости в режиме редактирования без Даты публикации")
-    public void addingNewsWithoutAPublicationDate() throws InterruptedException {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonCategoryCreatingNews();
-        NewsSteps.clickButtonTitleCreatingNews();
-        NewsSteps.clickButtonTimeCreatingNews();
-        NewsSteps.clickDescriptionNews();
-        NewsSteps.clickButtonSaveNews();
-        waitFor(1);
+    public void addingNewsWithoutAPublicationDate(){
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonCategoryCreatingNews();
+        newsSteps.clickButtonTitleCreatingNews();
+        newsSteps.clickButtonTimeCreatingNews();
+        newsSteps.clickDescriptionNews();
+        newsSteps.clickButtonSaveNews();
         onView(withText(R.string.empty_fields)) //Заполните пустые поля
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -182,18 +166,16 @@ public class NewsTest {
     @Test
     @Story("Тест-кейс №51")
     @Description("Добавление новости в режиме редактирования без Времени")
-    public void addingNewsWithoutAPublicationTime() throws InterruptedException {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonCategoryCreatingNews();
-        NewsSteps.clickButtonTitleCreatingNews();
-        NewsSteps.clickButtonDateCreatingNews();
-        NewsSteps.clickDescriptionNews();
-        NewsSteps.clickButtonSaveNews();
-        Thread.sleep(1000);
-        waitFor(1);
+    public void addingNewsWithoutAPublicationTime(){
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonCategoryCreatingNews();
+        newsSteps.clickButtonTitleCreatingNews();
+        newsSteps.clickButtonDateCreatingNews();
+        newsSteps.clickDescriptionNews();
+        newsSteps.clickButtonSaveNews();
         onView(withText(R.string.empty_fields)) //Заполните пустые поля
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -203,18 +185,16 @@ public class NewsTest {
     @Test
     @Story("Тест-кейс №52")
     @Description("Добавление новости в режиме редактирования без Описания")
-    public void addingNewsWithoutDescription() throws InterruptedException {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonCategoryCreatingNews();
-        NewsSteps.clickButtonTitleCreatingNews();
-        NewsSteps.clickButtonDateCreatingNews();
-        NewsSteps.clickButtonTimeCreatingNews();
-        NewsSteps.clickButtonSaveNews();
-        Thread.sleep(1000);
-        waitFor(1);
+    public void addingNewsWithoutDescription(){
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonCategoryCreatingNews();
+        newsSteps.clickButtonTitleCreatingNews();
+        newsSteps.clickButtonDateCreatingNews();
+        newsSteps.clickButtonTimeCreatingNews();
+        newsSteps.clickButtonSaveNews();
         onView(withText(R.string.empty_fields)) //Заполните пустые поля
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -224,13 +204,12 @@ public class NewsTest {
     @Test
     @Story("Тест-кейс №53")
     @Description("Добавление новости в режиме редактирования без заполения полей")
-    public void addingNewsWithoutFillingInFields() throws InterruptedException {
-        NewsSteps.clickButtonMainMenu();
-        NewsSteps.clickButtonNews();
-        NewsSteps.clickButtonEditing();
-        NewsSteps.clickButtonAddingNews();
-        NewsSteps.clickButtonSaveNews();
-        waitFor(1);
+    public void addingNewsWithoutFillingInFields(){
+        newsSteps.clickButtonMainMenu();
+        newsSteps.clickButtonNews();
+        newsSteps.clickButtonEditing();
+        newsSteps.clickButtonAddingNews();
+        newsSteps.clickButtonSaveNews();
         onView(withText(R.string.empty_fields)) //Заполните пустые поля
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));

@@ -14,167 +14,154 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static ru.netology.element.NewsElement.getButtonCancel;
-import static ru.netology.element.NewsElement.getButtonFilterNews;
-import static ru.netology.element.NewsElement.getButtonNewsOk;
-import static ru.netology.element.NewsElement.getButtonNewsSorting;
-import static ru.netology.element.NewsElement.getButtonSaveNews;
-import static ru.netology.element.NewsElement.getButtonTimeOk;
-import static ru.netology.element.NewsElement.getCategoryCreatingNews;
-import static ru.netology.element.NewsElement.getCategoryFilterNews;
-import static ru.netology.element.NewsElement.getDateCreatingNews;
-import static ru.netology.element.NewsElement.getDateEndFilterNews;
-import static ru.netology.element.NewsElement.getDateStartFilterNews;
-import static ru.netology.element.NewsElement.getDescriptionNews;
-import static ru.netology.element.NewsElement.getFilterButton;
-import static ru.netology.element.NewsElement.getNewsElementsButtonAddingNews;
-import static ru.netology.element.NewsElement.getNewsElementsButtonEditing;
-import static ru.netology.element.NewsElement.getNewsElementsButtonMainMenu;
-import static ru.netology.element.NewsElement.getNewsElementsButtonNews;
-import static ru.netology.element.NewsElement.getTimeCreatingNews;
-import static ru.netology.element.NewsElement.getTitleCreatingNews;
-import static ru.netology.element.WaitElement.waitFor;
-import static ru.netology.element.WaitElement.waitUntilElement;
-import static ru.netology.method.additionalActions.clickChildViewWithId;
-import static ru.netology.method.additionalActions.getChildTextViewWithId;
-import static ru.netology.method.additionalActions.getTextFromView;
+
+
+
+import static ru.netology.method.TestUtils.clickChildViewWithId;
+import static ru.netology.method.TestUtils.getChildTextViewWithId;
+import static ru.netology.method.TestUtils.getTextFromView;
 
 import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
+import ru.netology.element.NewsElement;
+import ru.netology.element.WaitElement;
 
 public class NewsSteps {
 
-    public static void clickButtonMainMenu() {
+    private final NewsElement newsElement = new NewsElement();
+    private final WaitElement waitElement = new WaitElement();
+
+    public void clickButtonMainMenu() {
         Allure.step("Нажать на кнопку Главное меню");
-        waitUntilElement(R.id.main_menu_image_button);
-        waitFor(2);
-        onView(getNewsElementsButtonMainMenu())
+        waitElement.waitUntilElement(R.id.main_menu_image_button);
+        /*waitElement.waitFor(2);*/
+        onView(newsElement.getNewsElementsButtonMainMenu())
                 .perform(click());
     }
 
-    public static void clickButtonNews() {
+    public void clickButtonNews() {
         Allure.step("Нажать на кнопку Новости");
-        waitUntilElement(android.R.id.title);
-        onView(getNewsElementsButtonNews())
+        waitElement.waitUntilElement(android.R.id.title);
+        onView(newsElement.getNewsElementsButtonNews())
                 .perform(click());
     }
 
-    public static void clickButtonEditing() {
+    public void clickButtonEditing() {
         Allure.step("Нажать на кнопку Редактирование");
-        waitUntilElement(R.id.edit_news_material_button);
-        onView(getNewsElementsButtonEditing())
+        waitElement.waitUntilElement(R.id.edit_news_material_button);
+        onView(newsElement.getNewsElementsButtonEditing())
                 .perform(click());
     }
 
-    public static void clickButtonAddingNews() {
+    public void clickButtonAddingNews() {
         Allure.step("Нажать на кнопку Добавление новости");
-        waitUntilElement(R.id.add_news_image_view);
-        onView(getNewsElementsButtonAddingNews())
+        waitElement.waitUntilElement(R.id.add_news_image_view);
+        onView(newsElement.getNewsElementsButtonAddingNews())
                 .perform(click());
     }
 
-    public static void clickButtonCategoryCreatingNews() {
+    public void clickButtonCategoryCreatingNews() {
         Allure.step("Выбрать категорию для создания новости");
-        waitUntilElement(R.id.news_item_category_text_auto_complete_text_view);
-        onView(getCategoryCreatingNews())
+        waitElement.waitUntilElement(R.id.news_item_category_text_auto_complete_text_view);
+        onView(newsElement.getCategoryCreatingNews())
                 .perform(click(), replaceText("Объявление"), closeSoftKeyboard());
     }
 
     static String titleNews = "Изменения в графике работы специалистов";
 
-    public static void clickButtonTitleCreatingNews() {
+    public void clickButtonTitleCreatingNews() {
         Allure.step("Ввести заголовок новости");
-        waitUntilElement(R.id.news_item_title_text_input_edit_text);
-        onView(getTitleCreatingNews())
+        waitElement.waitUntilElement(R.id.news_item_title_text_input_edit_text);
+        onView(newsElement.getTitleCreatingNews())
                 .perform(click(), clearText(), replaceText(titleNews), closeSoftKeyboard());
     }
 
-    public static void clickButtonDateCreatingNews() {
+    public void clickButtonDateCreatingNews() {
         Allure.step("Выбрать текущую дату публикации новости в календаре");
-        waitUntilElement(R.id.news_item_publish_date_text_input_edit_text);
-        onView(getDateCreatingNews())
+        waitElement.waitUntilElement(R.id.news_item_publish_date_text_input_edit_text);
+        onView(newsElement.getDateCreatingNews())
                 .perform(click());
-        waitUntilElement(android.R.id.button1);
-        onView(getButtonNewsOk())
+        waitElement.waitUntilElement(android.R.id.button1);
+        onView(newsElement.getButtonNewsOk())
                 .perform(click());
     }
 
-    public static void clickButtonTimeCreatingNews() {
+    public void clickButtonTimeCreatingNews() {
         Allure.step("Выбрать время публикации новости");
-        waitUntilElement(R.id.news_item_publish_time_text_input_edit_text);
-        onView(getTimeCreatingNews())
+        waitElement.waitUntilElement(R.id.news_item_publish_time_text_input_edit_text);
+        onView(newsElement.getTimeCreatingNews())
                 .perform(click());
-        waitUntilElement(android.R.id.button1);
-        onView(getButtonTimeOk())
+        waitElement.waitUntilElement(android.R.id.button1);
+        onView(newsElement.getButtonTimeOk())
                 .perform(click());
     }
 
-    public static void clickDescriptionNews() {
+    public void clickDescriptionNews() {
         Allure.step(" Ввести описание новости в окне Описание");
-        waitUntilElement(R.id.news_item_description_text_input_edit_text);
-        onView(getDescriptionNews())
+        waitElement.waitUntilElement(R.id.news_item_description_text_input_edit_text);
+        onView(newsElement.getDescriptionNews())
                 .perform(replaceText("Важно"), closeSoftKeyboard());
     }
 
-    public static void clickButtonSaveNews() {
+    public void clickButtonSaveNews() {
         Allure.step("Нажать кнопку Сохранить");
-        waitUntilElement(R.id.save_button);
-        onView(getButtonSaveNews())
+        waitElement.waitUntilElement(R.id.save_button);
+        onView(newsElement.getButtonSaveNews())
                 .perform(scrollTo(), click());
     }
 
-    public static void clickFilterNews() {
+    public void clickFilterNews() {
         Allure.step("Нажать Фильтр Новостей");
-        waitUntilElement(R.id.filter_news_material_button);
-        onView(getButtonFilterNews())
+        waitElement.waitUntilElement(R.id.filter_news_material_button);
+        onView(newsElement.getButtonFilterNews())
                 .perform(click());
     }
 
-    public static void clickButtonCategoryFilterNews() {
+    public void clickButtonCategoryFilterNews() {
         Allure.step("Выбрать категорию для фильтра новостей");
-        waitUntilElement(R.id.news_item_category_text_auto_complete_text_view);
-        onView(getCategoryFilterNews())
+        waitElement.waitUntilElement(R.id.news_item_category_text_auto_complete_text_view);
+        onView(newsElement.getCategoryFilterNews())
                 .perform(replaceText("Объявление"));
 
     }
 
-    public static void clickButtonDateStartFilterNews() {
+    public void clickButtonDateStartFilterNews() {
         Allure.step("Выбрать текущую дату публикации новости в календаре фильтра");
-        waitUntilElement(R.id.news_item_publish_date_start_text_input_edit_text);
-        onView(getDateStartFilterNews())
+        waitElement.waitUntilElement(R.id.news_item_publish_date_start_text_input_edit_text);
+        onView(newsElement.getDateStartFilterNews())
                 .perform(click());
-        waitUntilElement(android.R.id.button1);
-        onView(getButtonNewsOk())
+        waitElement.waitUntilElement(android.R.id.button1);
+        onView(newsElement.getButtonNewsOk())
                 .perform(click());
     }
 
-    public static void clickButtonDateEndFilterNews() {
+    public void clickButtonDateEndFilterNews() {
         Allure.step("Выбрать текущую дату публикации новости в календаре фильтра");
-        waitUntilElement(R.id.news_item_publish_date_end_text_input_edit_text);
-        onView(getDateEndFilterNews())
+        waitElement.waitUntilElement(R.id.news_item_publish_date_end_text_input_edit_text);
+        onView(newsElement.getDateEndFilterNews())
                 .perform(click());
-        waitUntilElement(android.R.id.button1);
-        onView(getButtonTimeOk())
+        waitElement. waitUntilElement(android.R.id.button1);
+        onView(newsElement.getButtonTimeOk())
                 .perform(click());
     }
 
-    public static void clickButtonFilter() {
+    public void clickButtonFilter() {
         Allure.step("Нажать кнопку Фильтр");
-        waitUntilElement(R.id.filter_button);
-        onView(getFilterButton())
+        waitElement.waitUntilElement(R.id.filter_button);
+        onView(newsElement.getFilterButton())
                 .perform(click());
     }
 
-    public static void clickButtonNewsSorting() {
+    public void clickButtonNewsSorting() {
         Allure.step("Нажать кнопку сортировка новостей");
-        waitUntilElement(R.id.sort_news_material_button);
-        onView(getButtonNewsSorting())
+        waitElement.waitUntilElement(R.id.sort_news_material_button);
+        onView(newsElement.getButtonNewsSorting())
                 .perform(click());
     }
 
-    public static void newsSearch() {
+    public void newsSearch() {
         Allure.step("Наити новость");
         onView(allOf(
                 withId(R.id.news_item_title_text_view),
@@ -182,7 +169,7 @@ public class NewsSteps {
                 .check(matches(isDisplayed())).perform(scrollTo());
     }
 
-    public static void deleteNews() {
+    public void deleteNews() {
         Allure.step("Удалить новость");
 
         final ViewInteraction recyclerView = onView(withId(R.id.news_list_recycler_view));
@@ -196,7 +183,7 @@ public class NewsSteps {
         onView(withText(deletedNewsTitle)).check(doesNotExist());
     }
 
-    public static void deleteNewsInFilter() {
+    public void deleteNewsInFilter() {
         Allure.step("Удалить новость из фильтра");
         onView(allOf(withId(R.id.delete_news_item_image_view), hasSibling(withText(titleNews)))).perform(click());
         onView(withId(android.R.id.button1))
@@ -207,30 +194,29 @@ public class NewsSteps {
 
     }
 
-    public static void clickButtonCancel() {
+    public void clickButtonCancel() {
         Allure.step("Нажать кнопку Отменить");
-        waitUntilElement(R.id.cancel_button);
-        onView(getButtonCancel())
+        waitElement.waitUntilElement(R.id.cancel_button);
+        onView(newsElement.getButtonCancel())
                 .perform(scrollTo(), click());
         onView(withId(android.R.id.button1)).check(matches(isDisplayed())).perform(click());
     }
 
-    public static void controlPanelIsDisplayed() {
+    public void controlPanelIsDisplayed() {
         onView(withText("Control panel"))
                 .check(matches(isDisplayed()));
     }
 
-    public static void clickCancelButtonCancel() {
+    public void clickCancelButtonCancel() {
         Allure.step("Отмена сообщения об отмене");
-        waitUntilElement(R.id.cancel_button);
-        onView(getButtonCancel())
+        waitElement.waitUntilElement(R.id.cancel_button);
+        onView(newsElement.getButtonCancel())
                 .perform(scrollTo(), click());
         onView(withId(android.R.id.button2)).check(matches(isDisplayed())).perform(click());
     }
 
-    public static void creatingNewsIsDisplayed() {
+    public void creatingNewsIsDisplayed() {
         onView(withText("Creating"))
                 .check(matches(isDisplayed()));
     }
-
 }

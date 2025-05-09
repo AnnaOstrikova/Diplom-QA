@@ -1,0 +1,109 @@
+{
+    "name": "openingLinkTermsOfUse",
+    "start": 1746799436386,
+    "stop": 1746799441071,
+    "stage": "finished",
+    "description": "Открытие ссылки Пользовательское соглашение",
+    "descriptionHtml": null,
+    "status": "passed",
+    "statusDetails": null,
+    "steps": [
+        {
+            "name": "Нажать на кнопку Главное меню",
+            "start": 1746799439760,
+            "stop": 1746799439760,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на кнопку О приложении",
+            "start": 1746799440207,
+            "stop": 1746799440207,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        },
+        {
+            "name": "Нажать на ссылку Пользовательское соглашение",
+            "start": 1746799440525,
+            "stop": 1746799440525,
+            "stage": "finished",
+            "description": null,
+            "descriptionHtml": null,
+            "status": "passed",
+            "statusDetails": null,
+            "steps": [
+            ],
+            "attachments": [
+            ],
+            "parameters": [
+            ]
+        }
+    ],
+    "attachments": [
+    ],
+    "parameters": [
+    ],
+    "uuid": "2218a307-4e24-4034-85e8-e1d3cac49012",
+    "historyId": "469a51c9700312d0f76153e945ad2cad",
+    "fullName": "ru.netology.test.AboutAppTest.openingLinkTermsOfUse",
+    "labels": [
+        {
+            "name": "package",
+            "value": "ru.netology.test"
+        },
+        {
+            "name": "testClass",
+            "value": "ru.netology.test.AboutAppTest"
+        },
+        {
+            "name": "testMethod",
+            "value": "openingLinkTermsOfUse"
+        },
+        {
+            "name": "suite",
+            "value": "ru.netology.test.AboutAppTest"
+        },
+        {
+            "name": "host",
+            "value": "localhost"
+        },
+        {
+            "name": "thread",
+            "value": "Instr: androidx.test.runner.AndroidJUnitRunner(1839)"
+        },
+        {
+            "name": "framework",
+            "value": "junit4"
+        },
+        {
+            "name": "language",
+            "value": "kotlin"
+        },
+        {
+            "name": "story",
+            "value": "Тест-кейс №69"
+        },
+        {
+            "name": "epic",
+            "value": "О приложении"
+        }
+    ]
+}

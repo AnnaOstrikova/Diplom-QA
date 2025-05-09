@@ -7,25 +7,17 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.Matchers.allOf;
-
-import static ru.netology.element.AuthElement.getAuthorizationElementsButtonLogOut;
-import static ru.netology.element.AuthElement.getAuthorizationElementsLoginField;
-import static ru.netology.element.AuthElement.getAuthorizationElementsPasswordField;
-import static ru.netology.element.AuthElement.getAuthorizationElementsTextAuthorization;
-import static ru.netology.element.WaitElement.waitFor;
-import static ru.netology.element.WaitElement.waitUntilElement;
-
-import androidx.test.espresso.NoMatchingViewException;
-
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.netology.element.AuthElement;
+import ru.netology.element.WaitElement;
+
 
 
 public class AuthSteps {
+    private final AuthElement authElement = new AuthElement();
+    private final WaitElement waitElement = new WaitElement();
 
     static String validlogin = "login2";
     static String validPassword = "password2";
@@ -33,75 +25,61 @@ public class AuthSteps {
     static String wrongPassword = "password";
 
 
-    public static void autorization() {
-        try {
-            AuthElement.textAuthorization();
-        } catch (NoMatchingViewException e) {
-            return;
-        }
-        waitFor(2);
-        AuthElement.clickLoginField();
-        AuthElement.clickPasswordField();
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-    }
-
-    public static void clickButton(Integer resourceId) {
+    public void clickButton(Integer resourceId) {
         Allure.step("Нажать на кнопку Войти");
-        waitUntilElement(R.id.enter_button);
+        waitElement.waitUntilElement(R.id.enter_button);
         onView(withId(resourceId))
                 .perform(click());
     }
 
-    public static void clickLoginField() {
+    public void clickLoginField() {
         Allure.step("В поле Логин ввести логин зарегистрированного пользователя");
-        waitUntilElement(R.id.login_text_input_layout);
-        onView(getAuthorizationElementsLoginField())
+        waitElement.waitUntilElement(R.id.login_text_input_layout);
+        onView(authElement.getAuthorizationElementsLoginField())
                 .perform(replaceText(validlogin), closeSoftKeyboard())
                 .check(matches(isDisplayed()));
     }
-    public static void clickLoginFieldWrong() {
+    public void clickLoginFieldWrong() {
         Allure.step("В поле Логин ввести логин незарегистрированного пользователя");
-        waitUntilElement(R.id.login_text_input_layout);
-        onView(getAuthorizationElementsLoginField())
+        waitElement.waitUntilElement(R.id.login_text_input_layout);
+        onView(authElement.getAuthorizationElementsLoginField())
                 .perform(replaceText(wrongLogin), closeSoftKeyboard())
                 .check(matches(isDisplayed()));
     }
 
-    public static void clickPasswordField() {
+    public void clickPasswordField() {
         Allure.step("В поле Пароль ввести пароль зарегистрированного пользователя");
-        waitUntilElement(R.id.password_text_input_layout);
-        onView(getAuthorizationElementsPasswordField())
+        waitElement.waitUntilElement(R.id.password_text_input_layout);
+        onView(authElement.getAuthorizationElementsPasswordField())
                 .perform(replaceText(validPassword), closeSoftKeyboard())
                 .check(matches(isDisplayed()));
     }
-    public static void clickPasswordFieldWrong() {
+    public void clickPasswordFieldWrong() {
         Allure.step("В поле Пароль ввести пароль незарегистрированного пользователя");
-        waitUntilElement(R.id.password_text_input_layout);
-        onView(getAuthorizationElementsPasswordField())
+        waitElement.waitUntilElement(R.id.password_text_input_layout);
+        onView(authElement.getAuthorizationElementsPasswordField())
                 .perform(replaceText(wrongPassword), closeSoftKeyboard())
                 .check(matches(isDisplayed()));
     }
 
-    public static void clickButtonExit(Integer resourceId) {
+    public void clickButtonExit(Integer resourceId) {
         Allure.step("Нажать на кнопку Выход");
-        waitUntilElement(R.id.authorization_image_button);
-        waitFor(5);
+        waitElement.waitUntilElement(R.id.authorization_image_button);
         onView(withId(resourceId))
                 .perform(click());
     }
 
-    public static void clickButtonLogOut() {
+    public void clickButtonLogOut() {
         Allure.step("Нажать на кнопку для выхода из приложения");
-        waitUntilElement(android.R.id.title);
-        onView(getAuthorizationElementsButtonLogOut())
+        waitElement.waitUntilElement(android.R.id.title);
+        onView(authElement.getAuthorizationElementsButtonLogOut())
                 .perform(click());
     }
 
-    public static void textAuthorization() {
+    public void textAuthorization() {
         Allure.step("Отобразилаcь страница Авторизации");
-        waitUntilElement(R.id.nav_host_fragment);
-        waitFor(3);
-        onView(getAuthorizationElementsTextAuthorization())
+        waitElement.waitUntilElement(R.id.nav_host_fragment);
+        onView(authElement.getAuthorizationElementsTextAuthorization())
                 .check(matches(isDisplayed()));
     }
 }

@@ -6,12 +6,9 @@ import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
-import static ru.netology.element.WaitElement.waitFor;
 
 import android.view.View;
 
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -25,8 +22,10 @@ import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.Epic;
 import io.qameta.allure.kotlin.Story;
+import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.netology.element.AuthElement;
+import ru.netology.element.WaitElement;
 import ru.netology.steps.AuthSteps;
 
 
@@ -47,47 +46,40 @@ public class AuthTest {
             new ActivityScenarioRule<>(AppActivity.class);
     private View decorView;
 
-    @Before
-    public void setUp() {
-        mActivityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<AppActivity>() {
-            @Override
-            public void perform(AppActivity activity) {
-                decorView = activity.getWindow().getDecorView();
-            }
-        });
-    }
+    private final AuthSteps authSteps = new AuthSteps();
+    private final AuthElement authElement = new AuthElement();
+    private final WaitElement waitElement = new WaitElement();
 
     @Before
-    public void authorizationVerification() {
-        try {
-            AuthSteps.textAuthorization();
-        }catch (NoMatchingViewException e) {
-            AuthSteps.clickButtonExit(AuthElement.getAuthorizationElementsButtonExit());
-            AuthSteps.clickButtonLogOut();
+    public void setUp() {
+        if (!authElement.waitForSplashScreen(3000).checkAuthorizationIsDisplayed()) {
+                /*onView(withId(R.id.authorization_image_button)).check(matches(isDisplayed()));
+                onView(withText("Log out")).check(matches(isDisplayed()));*/
+            authSteps.clickButtonExit(authElement.getAuthorizationElementsButtonExit());
+            authSteps.clickButtonLogOut();
         }
     }
 
-//  Тест-кейс №1 - Авторизация зарегистрированного пользователя.
+    //  Тест-кейс №1 - Авторизация зарегистрированного пользователя.
     @Test
     @Story("Тест-кейс №1")
     @Description("Авторизация зарегистрированного пользователя")
     public void successfulAuthorization() {
-        AuthSteps.clickLoginField();
-        AuthSteps.clickPasswordField();
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-        AuthElement.clickButtonExit(AuthElement.getAuthorizationElementsButtonExit());
-        AuthElement.clickButtonLogOut();
+        authSteps.clickLoginField();
+        authSteps.clickPasswordField();
+        authSteps.clickButton(authElement.getAutorizationElementsButton());
+        authElement.waitForMainScreen(2000).checkDashboardIsDisplayed();
     }
+
 //  Тест-кейс №2 - Авторизация незарегистрированного пользователя.
 
     @Test
     @Story("Тест-кейс №2")
     @Description("Авторизация незарегистрированного пользователя (неверный логин и пароль)")
     public void unsuccessfulAuthorization() {
-        AuthSteps.clickLoginFieldWrong();
-        AuthSteps.clickPasswordFieldWrong();
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-        waitFor(1);
+        authSteps.clickLoginFieldWrong();
+        authSteps.clickPasswordFieldWrong();
+        authSteps.clickButton(authElement.getAutorizationElementsButton());
         onView(withText("Wrong login or password")) // Неверный логин или пароль
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -99,9 +91,8 @@ public class AuthTest {
     @Story("Тест-кейс №3")
     @Description("Авторизация незарегистрированного пользователя (с пустым логином)")
     public void loginFieldIsEmpty() {
-        AuthSteps.clickPasswordField();
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-        waitFor(1);
+        authSteps.clickPasswordField();
+        authSteps.clickButton(authElement.getAutorizationElementsButton());
         onView(withText("Login and password cannot be empty")) // Логин и пароль не могут быть пустыми
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -113,9 +104,8 @@ public class AuthTest {
     @Story("Тест-кейс №4")
     @Description("Авторизация незарегистрированного пользователя (с пустым паролем)")
     public void passwordFieldIsEmpty() {
-        AuthSteps.clickLoginField();
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-        waitFor(1);
+        authSteps.clickLoginField();
+        authSteps.clickButton(authElement.getAutorizationElementsButton());
         onView(withText("Login and password cannot be empty")) // Логин и пароль не могут быть пустыми
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -126,8 +116,7 @@ public class AuthTest {
     @Story("Тест-кейс №5")
     @Description("Авторизация пользователя без ввода логина и пароля")
     public void loginAndPasswordEmpty() {
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-        waitFor(1);
+        authSteps.clickButton(authElement.getAutorizationElementsButton());
         onView(withText("Login and password cannot be empty")) // Логин и пароль не могут быть пустыми
                 .inRoot(withDecorView(not(decorView)))
                 .check(matches(isDisplayed()));
@@ -138,11 +127,11 @@ public class AuthTest {
     @Story("Тест-кейс №6")
     @Description("Выход из учетной записи пользователя")
     public void loggingOut() {
-        AuthSteps.clickLoginField();
-        AuthSteps.clickPasswordField();
-        AuthElement.clickButton(AuthElement.getAutorizationElementsButton());
-        AuthElement.clickButtonExit(AuthElement.getAuthorizationElementsButtonExit());
-        AuthElement.clickButtonLogOut();
-        AuthSteps.textAuthorization();
+        authSteps.clickLoginField();
+        authSteps.clickPasswordField();
+        authSteps.clickButton(authElement.getAutorizationElementsButton());
+        authSteps.clickButtonExit(R.id.authorization_image_button);
+        authSteps.clickButtonLogOut();
+        authSteps.textAuthorization();
     }
 }

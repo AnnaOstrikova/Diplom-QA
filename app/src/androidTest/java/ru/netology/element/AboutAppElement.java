@@ -25,3 +25,4 @@ public class AboutAppElement extends AboutAppSteps {
         return allOf(withText("News"));
     }
 }
+
